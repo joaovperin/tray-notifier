@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Perin
+ * Copyright (C) 2020 Joaov
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,17 +16,33 @@
  */
 package br.com.jpe.traynotifier;
 
-import java.io.IOException;
+import java.util.Date;
 
 /**
  * ...
  */
-public class Main {
+public class NotificationMessage {
 
-    public static void main(String[] args) throws IOException {
-        FirestoreUtils.get().init();
-        TrayApplication.get().install();
-        MonitorThread.startMonitor();
+    private final String id;
+    private final String message;
+    private final Date date;
+
+    public NotificationMessage(String id, String message, Date date) {
+        this.id = id;
+        this.message = message;
+        this.date = date;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
 }

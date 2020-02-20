@@ -24,6 +24,7 @@ import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
 
 /**
  * ...
@@ -61,7 +62,7 @@ public class TrayApplication extends SwingApplication {
             });
             popup.add(defaultItem);
 
-            trayIcon = new TrayIcon(image, "Tray Demo", popup);
+            trayIcon = new TrayIcon(image, "TrayNotifier by Joaovperin", popup);
 
             trayIcon.setImageAutoSize(true);
             trayIcon.addActionListener((ActionEvent e) -> {
@@ -81,6 +82,13 @@ public class TrayApplication extends SwingApplication {
             System.out.println("sorry");
 //  System Tray is not supported
         }
+    }
+
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+    public void showNotification(NotificationMessage notification) {
+        String title = String.format("%s", sdf.format(notification.getDate()));
+        trayIcon.displayMessage(title, notification.getMessage(), TrayIcon.MessageType.INFO);
     }
 
     public TrayIcon getTray() {
